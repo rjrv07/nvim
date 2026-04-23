@@ -8,7 +8,7 @@ return {
 		"neovim/nvim-lspconfig",
 	},
 	keys = {
-		{ "<leader>ch", vim.lsp.buf.hover, { desc = "Show LSP hover info" } },
+		{ "K", vim.lsp.buf.hover, { desc = "Show LSP hover info" } },
 		{ "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP code action" } },
 		{ "gd", vim.lsp.buf.definition, { desc = "Go to definition" } },
 		{ "<leader>cf", vim.lsp.buf.format, { desc = "Format code" } },
