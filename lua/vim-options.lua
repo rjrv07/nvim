@@ -8,3 +8,10 @@ vim.cmd.colorscheme("catppuccin-mocha")
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
+
+vim.opt.autocomplete = true
+vim.opt.completeopt = "fuzzy,menuone,popup"
+vim.opt.pumheight = 7
+vim.opt.pummaxwidth = 80
+
+vim.opt.clipboard = unnamed
