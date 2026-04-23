@@ -4,9 +4,8 @@ return {
                 'nvim-lua/plenary.nvim',
                 { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
         },
-        opts = function()
-                local builtin = require("telescope.builtin")
-                vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
-                vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
-        end
+        keys = {
+                { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Telescope find files" },
+                { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Telescope live grep" },
+        },
 }

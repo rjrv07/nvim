@@ -7,7 +7,10 @@ return {
                 "nvim-tree/nvim-web-devicons", 
         },
         lazy = false, 
-        opts = function()
-                vim.keymap.set("n", "<leader>n", ":Neotree toggle<CR>")
-        end,
+        keys = {
+                { "<C-n>", "<cmd>Neotree<cr>", desc = "Activate neo-tree" },
+        },
+        opts = {
+                close_if_last_window = true,
+        },
 }
