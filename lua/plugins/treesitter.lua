@@ -3,6 +3,9 @@ return {
 	lazy = false,
 	build = ":TSUpdate",
 	config = function()
+		vim.filetype.add({
+			extension = { metal = "cpp" },
+		})
 		require("nvim-treesitter").install({ "lua", "cpp", "cmake", "haskell", "python" })
 		vim.api.nvim_create_autocmd("FileType", {
 			callback = function()
