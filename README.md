@@ -8,6 +8,7 @@ Personal Neovim configuration — Lua-based, minimal, fast.
 - Git
 - A [Nerd Font](https://www.nerdfonts.com/) (for icons)
 - `make` and a C compiler (for telescope-fzf-native)
+- LSP servers installed on the system (see [Language Support](#language-support))
 
 ## Installation
 
@@ -15,8 +16,6 @@ Personal Neovim configuration — Lua-based, minimal, fast.
 git clone https://github.com/rjrv07/nvim ~/.config/nvim
 nvim  # lazy.nvim bootstraps automatically on first launch
 ```
-
-On first launch, lazy.nvim will install all plugins. LSP servers are installed on demand via Mason — open a file and run `:MasonInstall <server>`, or let mason-lspconfig handle it automatically.
 
 ## Keymaps
 
@@ -27,11 +26,8 @@ On first launch, lazy.nvim will install all plugins. LSP servers are installed o
 | `<C-n>` | Toggle file explorer |
 | `<leader>ff` | Find files |
 | `<leader>fg` | Live grep |
-| `K` | Show hover docs |
+| `K` | LSP hover docs |
 | `gd` | Go to definition |
-| `<leader>ca` | Code action |
-| `<leader>cf` | Format file |
-| `<leader>rn` | Rename symbol |
 
 ## Plugins
 
@@ -39,26 +35,23 @@ On first launch, lazy.nvim will install all plugins. LSP servers are installed o
 |--------|---------|
 | [catppuccin](https://github.com/catppuccin/nvim) | Colorscheme (mocha) |
 | [lualine](https://github.com/nvim-lualine/lualine.nvim) | Status line |
+| [gitsigns](https://github.com/lewis6991/gitsigns.nvim) | Git decorations |
 | [neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim) | File explorer |
 | [telescope](https://github.com/nvim-telescope/telescope.nvim) | Fuzzy finder |
 | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) | Syntax highlighting & indentation |
-| [mason](https://github.com/williamboman/mason.nvim) | LSP/tool installer |
-| [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) | LSP client config |
 | [dashboard-nvim](https://github.com/nvimdev/dashboard-nvim) | Splash screen |
 
 ## Language Support
 
-LSP servers are auto-installed via Mason:
+LSP uses Neovim's native client — no plugins required. Servers must be installed on your system:
 
-| Language | Server | Formatter |
-|----------|--------|-----------|
-| Lua | lua_ls | stylua |
-| C / C++ | clangd | — |
-| Haskell | hls | — |
-| Python | pyright | — |
-| CMake | neocmake | — |
+| Language | Server | Install |
+|----------|--------|---------|
+| Lua | lua-language-server | `brew install lua-language-server` |
+| C / C++ / CUDA | clangd | `brew install llvm` |
+| CMake | cmake-language-server | `pip install cmake-language-server` |
 
-Treesitter parsers installed: `lua`, `cpp`, `cmake`, `haskell`, `python`.
+Treesitter parsers: `lua`, `cpp`, `cmake`, `haskell`, `python`.
 
 ## Structure
 
@@ -67,13 +60,15 @@ Treesitter parsers installed: `lua`, `cpp`, `cmake`, `haskell`, `python`.
 ├── init.lua              # Entry point
 ├── lua/
 │   ├── vim-options.lua   # Editor settings
+│   ├── lsp-options.lua   # LSP client setup & completion
 │   ├── config/
 │   │   └── lazy.lua      # Plugin manager bootstrap
 │   └── plugins/          # One file per plugin
-└── lazy-lock.json        # Pinned plugin versions
+└── lsp/                  # One file per LSP server
 ```
 
-Adding a plugin is as simple as dropping a new file into `lua/plugins/` — no registration needed.
+Adding a plugin: drop a new file into `lua/plugins/`.  
+Adding an LSP server: drop a new file into `lsp/`.
 
 ## Plugin Management
 
