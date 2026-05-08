@@ -1,8 +1,13 @@
 return {
-        cmd = { 'cmake-language-server' },
+        cmd = { 'neocmakelsp', 'stdio' },
         filetypes = { 'cmake' },
         root_markers = { 'CMakePresets.json', 'CTestConfig.cmake', '.git', 'build', 'cmake' },
-        init_options = {
-                buildDirectory = 'build',
+        capabilities = {
+                workspace = {
+                        didChangeWatchedFiles = {
+                                dynamicRegistration = true,
+                                relativePatternSupport = true,
+                        },
+                },
         },
 }
